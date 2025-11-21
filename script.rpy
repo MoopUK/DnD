@@ -105,7 +105,7 @@ label start:
     bw "GOTTA GO FAST!"
     "(72 Hours Remaining)"
 
-# - A QUESTION: This is how to make choices in Ren'Py.
+# - A QUESTION: These are how to make choices in Ren'Py.
 # You can link them to different "Labels" with 'jump [label name]' on each separate answer OR just add one at the end
 # if it doesn't change the scene too much. I've done 'jump plan' at the end of all three choices in this case as
 # we're continuing the story like normal. The choice is what you're doing there first, rather than changing to different scenes.
@@ -232,28 +232,159 @@ label plan:
     jump dice_rolling
 
 label dice_rolling:
+    # WIP Casino background
     scene casino
-
+    # Dice roll - Random number generator between 1 and 20, to signify a D20 dice.
     # Using random function to do a very simple 1 - 20 dice roll
     $ import random
     # You want a random interger between 1 and 20
     $ roll = random.randint(1, 20)
-    dm "(Roll for luck!)"
-    dm "(You rolled [roll] on a d20!)"
-    dm "working as expected"
 
-    # check if roll is over 10 we get "Ending One"
-    if roll >= 10:
-        "Ending One!"
-    # Else if roll is under 10 "Ending Two"
-    elif roll <= 9:
-        "Ending Two!"
+    "(You go to the snail races at some part of this endevor for coin so you can get home)"
+    "(You pay 10 gold to play)"
+    $ coinsLeft -= 10
+    "Roll for luck!"
+    "You rolled [roll] on a d20!"
+    if roll == 20:
+        dm "(The second the gun goes off the snail is already at the finish line)"
+        dm "(Nobody knows what happened. It was just there! Done! First place!)"
+        dm "(Pete from the SnailWorld Records was also present and watching the match)"
+        pete "New world record!"
+        dm "(The snail is proud of itself)"
+        you "What was the time?"
+        dm "(Pete looks at you)"
+        pete "To hell if I know! But nobody is ever going to beat it!"
+        dm "(Pete is a *little* inebriated and won't even remember seeing this race in the morning)"
+        dm "(Which is a shame too, he loves snails so much and this was the greatest snail race of all time)"
+        dm "(Oh well, let's move on)"
+        dm "(You win, 50 gold!)"
+        $ coinsLeft += 50
 
-    dm "endings also workng as expected"
+    elif roll >= 19:
+        dm "(The snail looks amped up)"
+        dm "(Strretching it's little... snail legs... tail...?)"
+        dm "(Whatever snails have!)"
+        dm "(It stands by the starting line)"
+        dm "(As the gun goes off it ZOOMS straight to the front of the line!)"
+        dm "(The other snails snailing them in comparison!)"
+        dm "(You can't believe it! Nobody can believe it! It's almost like the snail is on a battery powered Tech Deck!)"
+        dm "(Whatever one of those are!)"
+        dm "(And it gets 1st place before the smoke has even left the gun)"
+        dm "(Winning you 40 gold!)"
+        $ coinsLeft += 40
 
-# Casino
+    elif roll >= 15:
+        dm "(>=15)"
+        dm "(Getting you 2nd place)"
+        dm "(Winning you 30 gold)"
+        $ coinsLeft += 30
 
-# Endings
+    elif roll >= 9:
+        dm "(Your snail has just enough strength not to complete fumble the entire race)"
+        dm "(Unfortunately though, it is not strong enough to win...)"
+        dm "(You got into 3rd place)"
+        dm "(Winning no gold, but you were given a 'One Free Try' token as a runner up prize)"
+        dm "(It literally adds 10 gold to your bag again)"
+        dm "(So at least it didn't cost you anything...)"
+        $ coinsLeft += 10
 
-    # This ends the game.
+    elif roll >= 2:
+        dm "(The snail looks hopeful, but as the gun goes off to start the race)"
+        # Playing an audio sound in game you've put into audio folder
+        play sound "audio/Snailcramp.mp3"
+        dm "(Ohhh that's not a good sound)"
+        dm "(The crowd gasps... someone even throws up at the sight...)"
+        dm "(The snail got snail cramp.)"
+        dm "(The poor thing winces and cries out in pain)"
+        dm "(As the priority for the medical world's knowledge of snail
+        treatment isn't anywhere near the top of the list)"
+        dm "(A casino bouncer takes the snail out back and shoots it with a shotgun to put it out of it's misery)"
+        dm "(The other snails glare at you like they know this is your fault for a bad roll)"
+        dm "(They have also learned to try to keep their very common ailment of snail cramp to themselves from now on)"
+        dm "(Else they meet the same fate.)"
+        dm "(You won no gold.)"
+
+    elif roll == 1:
+        scene angrysnailone
+        dm "(The snail looks at you, dead in the eyes.)"
+        dm "(It knows how terribly you've just rolled.)"
+        dm "(You're going to make it look bad! At the races of all places!)"
+        dm "(This is it's place of work you idiot!)"
+        dm "(If this snail had hands, it'd be throwing them.)"
+        dm "(To spite you, when the gun goes off to start the race,)"
+        dm "(It slithers backwards as fast as it can until it falls off the table)"
+        dm "(Coming not only in last place, but technically not even starting the race in the first palce)"
+        dm "(Disqualifying you and everyone else that bet on it.)"
+        dm "(Everyone else who bet on Ol' Slimey glare at you)"
+        dm "(You should probably watch your back when you leave later)"
+        dm "(You will have to pick another snail for the next race)"
+        dm "(And pay an extra 10 gold penalty from the racing fee, to stop a riot breaking out)"
+        dm "(Losing you 20 gold.)"
+        $ coinsLeft -= 20
+
+# If run out of money you get auto game over, if max out coins auto game win end
+# No coin ending (nocoinleft)
+if coinsLeft <= 0:
+    jump nocoinleft
+# Maxxed out coin ending (allthecoin)
+elif coinsLeft >= 100:
+    jump allthecoin
+
+# This is asking player/you if you want to continue snail racing, even if you have enough coins to end it.
+# The limitation of "There is no end." is working here as a psychological thing, as you've won the game and
+# you could go home and be on time for Little Timmy's lute recital but.... You could roll a d20 next? What happens when
+# you win big, eyyyyy? lol
+# QUESTION:
+$ timeLeft -= 5
+dm "(you have [timeLeft] hours left until Little Timmy's lute recital and [coinsLeft] gold.)"
+dm "(It takes 12 hours to travel by boat, and you only need 50 gold for the ticket)"
+bw "Soooo.... Do you want to bet on another race? :)"
+menu:
+    "Just one more race!":
+        jump dice_rolling
+    "No, I think I have enough to go home and don't want to risk losing it all":
+        jump endings
+
+# Game endings
+label endings:
+    if coinsLeft >= 50:
+        jump win
+    elif coinsLeft <=40:
+        jump lose
+
+label win:
+    "winner"
+    "(For legal reasons this game is a joke, please don't gamble on snail races,
+    or on any races, but if you REALLY have to at least gamble responsibily)"
+    return
+
+label lose:
+    "lose"
+    "(For legal reasons this game is a joke, please don't gamble on snail races,
+    or on any races, but if you REALLY have to at least gamble responsibily)"
+    return
+
+label nocoinleft:
+    dm "(You have ran out of coin at the snail races...)"
+    dm "(And so, you missed little timmy's lute recital)"
+    dm "(The divorce mages take your fields)"
+
+    "(For legal reasons this game is a joke, please don't gamble on snail races,
+    or on any races, but if you REALLY have to at least gamble responsibily)"
+    return
+
+label allthecoin:
+    dm "(You don't need to gamble anymore)"
+    dm "(You've maxed out the coins!)"
+    dm "(Not only do you get the boat back to little Timmy's recital on time,)"
+    dm "(you also buy your partner a beautiful gold encrusted snail ornament fron the casino gift shop)"
+    dm "(For some reason, they LOVE it! And show all of their confused friends)"
+    dm "(Little Timmy loves you too. And plays the lute like a pro.)"
+    lt "When I grow up, I'm going to be a gambler just like you!"
+    dm "(You've never been so proud.)"
+    "(For legal reasons this game is a joke, please don't gamble on snail races,
+    or on any races, but if you REALLY have to at least gamble responsibily)"
+    return
+
+# This ends the game.
     return
