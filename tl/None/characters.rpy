@@ -17,7 +17,11 @@ define bw = Character("Brain worm", color="#FBC3A7") # Dark peach colour name ta
 define you = Character("Player", color="#77878f") # Slate Grey colour name tag
 
 # Your son Little Timmy
-define lt = Character("Little Timmy")
+define lt = Character("Little Timmy", color="#00fa9a") # Spring Green colour name tag
+
+# Passerby
+define passerby = Character("A passerby", color="#cf3476") #Telemangenta colour name tag
+
 
 
 #-----------------------------------------------------
