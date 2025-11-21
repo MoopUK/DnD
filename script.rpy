@@ -77,6 +77,7 @@ default maxTime = 72
 
 # The game starts here.
 label start:
+    # Write the character you defined in characters.rpy, and "what the character says" in speech marks
     bw "You've woke up after a"
     bw "...heavy..."
     bw "night of drinking"
@@ -104,7 +105,10 @@ label start:
     bw "GOTTA GO FAST!"
     "(72 Hours Remaining)"
 
-# QUESTION:
+# - A QUESTION: This is how to make choices in Ren'Py.
+# You can link them to different "Labels" with 'jump [label name]' on each separate answer OR just add one at the end
+# if it doesn't change the scene too much. I've done 'jump plan' at the end of all three choices in this case as
+# we're continuing the story like normal. The choice is what you're doing there first, rather than changing to different scenes.
     dm "What do you do first?"
     menu:
         "Check my coin purse":
@@ -120,6 +124,7 @@ label start:
                 bw "You err... liked it so much you paid for that experience at least 12 times"
                 bw "even I lost count"
                 dm "(You see Rusty Richard's dive bar down the street and check your map to find out where you are)"
+                # scene sets the background image, in this case to a map (once I make and put in a map)
                 scene mapstart
                 dm "(It is quite a distance...)"
                 bw "Ooooh! A penny!"
@@ -186,14 +191,67 @@ label plan:
 # - the casino, suggested to you by an old man, what could go wrong?
 # snail races are at casino are how you get your coin
 
-# - Lemonade stand: asked for grapes, you make a huge fuss over how stupid
+# - Lemonade stand: Someone asked for grapes, you make a huge fuss over how stupid
 # it would be to make a drink out of grapes, break your lemonade stand in the
 # process and take your earnings to the casino to destress
 # Money making options (kill monsters, lemonade stand, casino)
 
+# QUESTION:
+    dm "How are you making money?"
+    menu:
+        "Reward posters for monsters in the area":
+            dm "(They're already killed and rewards claimed by some cool adventurers
+             in a cool party)"
+            bw "why do you never get to be in a cool party?"
+            dm "(The brain worm annoys you, to destress you decide on going to the
+            casino!)"
+            dm "(What is more relaxing than over stimulation of flashing lights and noises?)"
+
+        "A Lemonade Stand":
+            dm "(You find some bark on the side of the road and make up a sign for a lemonade stand)"
+            dm "(Finding a lemon tree and conviniently a pitcher you make lemonade and try to sell some to make
+            up the money needed to get home)"
+            $ coinsLeft += 20
+            $ timeLeft -= 10
+            dm "(Ten hours have passed, you've made 20 gold)"
+            dm "(and then someone asks you for grapes...)"
+            dm "(You make a huge fuss over how stupid it would be to make a
+            drink out of grapes!)"
+            dm "(You break your lemonade stand in the process and can no longer continue selling lemonade.)"
+            $ timeLeft -= 5
+            dm "(After 5 hours of raging, you decide to take your earnings to the casino to destress and get the rest of the money needed to get home)"
+
+        "Casino":
+            dm "(You overhear how easy it is to win on the snail races in the casino...)"
+            dm "(Gambling is the easiest way to make money, right?)"
+            bw "Gambling is a terrible way to make money!"
+            you "Shut up brain worm, you just want me to miss my little Timmy's lute recital!"
+            bw "Why would I want that? I told you about the recital in the first place!"
+            dm "(You ignore the brain worm and head to the casino)"
+
+    jump dice_rolling
+
+label dice_rolling:
+    scene casino
+
+    # Using random function to do a very simple 1 - 20 dice roll
+    $ import random
+    # You want a random interger between 1 and 20
+    $ roll = random.randint(1, 20)
+    dm "(Roll for luck!)"
+    dm "(You rolled [roll] on a d20!)"
+    dm "working as expected"
+
+    # check if roll is over 10 we get "Ending One"
+    if roll >= 10:
+        "Ending One!"
+    # Else if roll is under 10 "Ending Two"
+    elif roll <= 9:
+        "Ending Two!"
+
+    dm "endings also workng as expected"
 
 # Casino
-
 
 # Endings
 
