@@ -22,7 +22,8 @@ define lt = Character("Little Timmy", color="#00fa9a") # Spring Green colour nam
 # Passerby
 define passerby = Character("A passerby", color="#cf3476") #Telemangenta colour name tag
 
-
+# Pete (The Snail World Record enthusiast)
+define pete = Character("Pete", color="E2C787") # Snail shell colour name tag
 
 #-----------------------------------------------------
 ################# Character Images ####################
