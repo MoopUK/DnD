@@ -82,6 +82,7 @@ label start:
     bw "...heavy..."
     bw "night of drinking"
     dm "(Like... real heavy... honestly we're suprised you aren't dead)"
+    scene start
     you "Who is TALKING in my head!?!"
     bw "Your newest friend, Brain Worm! I was hybernating in that whiskey you drank"
     bw "Don't worry, I won't eat all of your brain, I have a very low metabolism"
@@ -149,7 +150,9 @@ label start:
                 bw "even I lost count"
                 dm "(The passerby looks at you with pity)"
                 passerby "Brain worms huh? My uncle had those after drinking in Rusty Richards dive bar"
-                passerby "You're in LOCATION, and here..."
+                passerby "You're here!"
+                dm "The passerby marks your map"
+                passerby"and here... Take this."
                 # Adds X-amount of money to coin purse
                 $ coinsLeft += 20
                 passerby "Hope that helps you get something to eat"
@@ -170,9 +173,9 @@ label start:
                 bw "Came out on a little boat with some bar people cheering..."
                 bw "You err... liked it so much you paid for that experience at least 12 times"
                 bw "even I lost count"
-                dm "(You see Rusty Richard's dive bar down the street and check your map to find out where you are)"
+                dm "(You see the boat transport dock down the street and check your map to find out where you are)"
                 scene mapstart
-                dm "(It is quite a distance...)"
+                dm "(That is QUITE the distance from home...)"
                 bw "Oooh! A penny!"
                 dm "(You found 20 gold on the floor, score!)"
                 # Adds X-amount of money to coin purse
@@ -204,6 +207,7 @@ label plan:
             dm "(You shiver at the thought of a spider pidgeon hybrid)"
             dm "(But it pays 100g each!)"
             dm "(You hear cheers and screams of delight outside and take a look...)"
+            scene outside
             dm "(They've already been killed and the rewards claimed by some cool adventurers
              in a cool party)"
             bw "why do you never get to be in a cool party?"
@@ -229,6 +233,7 @@ label plan:
             dm "(After 5 hours of raging, you decide to take your earnings to the casino to destress and get the rest of the money needed to get home)"
 
         "Casino":
+            scene outside
             dm "(You overhear how easy it is to win on the snail races in the casino...)"
             dm "(Gambling is the easiest way to make money, right?)"
             bw "Gambling is a terrible way to make money!"
@@ -287,8 +292,8 @@ label dice_rolling:
         scene casinorace1
         dm "(The gun goes off and the snails are amped up!)"
         scene casinorace2
-        dm "(Your snail isn't that much faster...)"
-        dm "(But they're just fast enough to be at the front of the line)"
+        dm "(Your snail isn't that much faster than the others...)"
+        dm "(But they're just fast enough to be near to the front of the line)"
         scene casinorace3
         dm "(Getting you 2nd place)"
         scene casinorace4
@@ -362,8 +367,9 @@ $ timeLeft -= 5
 dm "(you have [timeLeft] hours left until Little Timmy's lute recital and [coinsLeft] gold.)"
 dm "(It takes 12 hours to travel by boat, and you only need 50 gold for the ticket)"
 bw "Soooo.... Do you want to bet on another race? :)"
+bw "You don't have to stop, you could just keep going, what if you win the JACKPOT?!"
 menu:
-    "Just one more race!":
+    "Just one more race! I don't want it to end!":
         jump dice_rolling
     "No, I think I have enough to go home and don't want to risk losing it all":
         jump endings

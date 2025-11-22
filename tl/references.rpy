@@ -22,7 +22,11 @@
 # Map - edited by Kouda_Ha, original below
 # https://pixabay.com/illustrations/fantasy-map-drawing-fantasy-map-6355970/
 
-# 
+# Outside - unedited
+# https://www.pexels.com/photo/arch-in-alleyway-3750662/
+
+# start
+# https://www.pexels.com/photo/dawn-landscape-village-brook-3750664/
 
 #------------------------------
 # SOUND SOUND SOUND
