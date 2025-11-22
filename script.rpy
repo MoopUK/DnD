@@ -271,7 +271,7 @@ label dice_rolling:
     elif roll >= 19:
         scene casinorace1
         dm "(The snail looks amped up)"
-        dm "(Strretching it's little... snail legs... tail...?)"
+        dm "(Stretching it's little... snail legs... tail...?)"
         dm "(Whatever snails have!)"
         dm "(It stands by the starting line)"
         dm "(As the gun goes off it ZOOMS straight to the front of the line!)"
@@ -285,8 +285,13 @@ label dice_rolling:
 
     elif roll >= 15:
         scene casinorace1
-        dm "(>=15)"
+        dm "(The gun goes off and the snails are amped up!)"
+        scene casinorace2
+        dm "(Your snail isn't that much faster...)"
+        dm "(But they're just fast enough to be at the front of the line)"
+        scene casinorace3
         dm "(Getting you 2nd place)"
+        scene casinorace4
         dm "(Winning you 30 gold)"
         $ coinsLeft += 30
 
@@ -313,7 +318,7 @@ label dice_rolling:
         dm "(As the priority for the medical world's knowledge of snail
         treatment isn't anywhere near the top of the list)"
         dm "(A casino bouncer takes the snail out back and shoots it with a shotgun to put it out of it's misery)"
-        scene casino
+        scene casinorace7
         dm "(The other snails glare at you like they know this is your fault for a bad roll)"
         dm "(They have also learned to try to keep their very common ailment of snail cramp to themselves from now on)"
         dm "(Else they meet the same fate.)"
