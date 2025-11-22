@@ -183,7 +183,6 @@ label start:
 
     jump plan
 label plan:
-    "how to get home"
 # plan consists of:
 # - killing creatures in the area, but they're already claimed by these cool adventurers
 # in a cool party, fuck, why do you never get to be in a cool party?
@@ -197,20 +196,28 @@ label plan:
 # Money making options (kill monsters, lemonade stand, casino)
 
 # QUESTION:
-    dm "How are you making money?"
+    "How are you earning enough gold to get home?"
     menu:
         "Reward posters for monsters in the area":
-            dm "(They're already killed and rewards claimed by some cool adventurers
+            scene wanted
+            dm "(You go to the wanted posters in the nearby tavern)"
+            dm "(You shiver at the thought of a spider pidgeon hybrid)"
+            dm "(But it pays 100g each!)"
+            dm "(You hear cheers and screams of delight outside and take a look...)"
+            dm "(They've already been killed and the rewards claimed by some cool adventurers
              in a cool party)"
             bw "why do you never get to be in a cool party?"
-            dm "(The brain worm annoys you, to destress you decide on going to the
-            casino!)"
+            dm "(They're so cool they somehow killed every Spidpigeon, slime, and blood foxes in existance!)"
+            dm "(This depresses you immensely, and you decide on going to the
+            casino to destress and maybe win enough to get home)"
             dm "(What is more relaxing than over stimulation of flashing lights and noises?)"
 
         "A Lemonade Stand":
             dm "(You find some bark on the side of the road and make up a sign for a lemonade stand)"
-            dm "(Finding a lemon tree and conviniently a pitcher you make lemonade and try to sell some to make
+            dm "(Finding a lemon tree and conveniently a pitcher right next to it, you make lemonade and try to sell it make
             up the money needed to get home)"
+            dm "(At one point a humanoid-mouse was screaming something at you about the differences between lemons and lemon juice)"
+            dm "(But a humanoid-racoon dragged her away from you apologising profusely)"
             $ coinsLeft += 20
             $ timeLeft -= 10
             dm "(Ten hours have passed, you've made 20 gold)"
@@ -246,6 +253,7 @@ label dice_rolling:
     "Roll for luck!"
     "You rolled [roll] on a d20!"
     if roll == 20:
+        scene casinorace5
         dm "(The second the gun goes off the snail is already at the finish line)"
         dm "(Nobody knows what happened. It was just there! Done! First place!)"
         dm "(Pete from the SnailWorld Records was also present and watching the match)"
@@ -261,11 +269,13 @@ label dice_rolling:
         $ coinsLeft += 50
 
     elif roll >= 19:
+        scene casinorace1
         dm "(The snail looks amped up)"
         dm "(Strretching it's little... snail legs... tail...?)"
         dm "(Whatever snails have!)"
         dm "(It stands by the starting line)"
         dm "(As the gun goes off it ZOOMS straight to the front of the line!)"
+        scene casinorace6
         dm "(The other snails snailing them in comparison!)"
         dm "(You can't believe it! Nobody can believe it! It's almost like the snail is on a battery powered Tech Deck!)"
         dm "(Whatever one of those are!)"
@@ -274,12 +284,14 @@ label dice_rolling:
         $ coinsLeft += 40
 
     elif roll >= 15:
+        scene casinorace1
         dm "(>=15)"
         dm "(Getting you 2nd place)"
         dm "(Winning you 30 gold)"
         $ coinsLeft += 30
 
     elif roll >= 9:
+        scene casinorace1
         dm "(Your snail has just enough strength not to complete fumble the entire race)"
         dm "(Unfortunately though, it is not strong enough to win...)"
         dm "(You got into 3rd place)"
@@ -289,16 +301,19 @@ label dice_rolling:
         $ coinsLeft += 10
 
     elif roll >= 2:
+        scene casinorace1
         dm "(The snail looks hopeful, but as the gun goes off to start the race)"
         # Playing an audio sound in game you've put into audio folder
         play sound "audio/Snailcramp.mp3"
         dm "(Ohhh that's not a good sound)"
+        scene sadsnailcasino
         dm "(The crowd gasps... someone even throws up at the sight...)"
         dm "(The snail got snail cramp.)"
         dm "(The poor thing winces and cries out in pain)"
         dm "(As the priority for the medical world's knowledge of snail
         treatment isn't anywhere near the top of the list)"
         dm "(A casino bouncer takes the snail out back and shoots it with a shotgun to put it out of it's misery)"
+        scene casino
         dm "(The other snails glare at you like they know this is your fault for a bad roll)"
         dm "(They have also learned to try to keep their very common ailment of snail cramp to themselves from now on)"
         dm "(Else they meet the same fate.)"
@@ -309,8 +324,11 @@ label dice_rolling:
         dm "(The snail looks at you, dead in the eyes.)"
         dm "(It knows how terribly you've just rolled.)"
         dm "(You're going to make it look bad! At the races of all places!)"
+        scene angrysnailonetwo
         dm "(This is it's place of work you idiot!)"
+        scene angrysnailone
         dm "(If this snail had hands, it'd be throwing them.)"
+        scene casinorace1
         dm "(To spite you, when the gun goes off to start the race,)"
         dm "(It slithers backwards as fast as it can until it falls off the table)"
         dm "(Coming not only in last place, but technically not even starting the race in the first palce)"
