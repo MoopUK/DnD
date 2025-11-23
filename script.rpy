@@ -27,7 +27,7 @@
     # (Maybe the Casino will kick you out when you earn your maximum? And you go home as nothing else to do)
 
 # Game Jam Limitation 'There is no end':
-    # - There is no end - If you sucumb to the gambling addiction you could gamble to no end.
+    # - There is no end - If you succumb to the gambling addiction you could gamble to no end.
     # Rather than a game that is ongoing forever, this will technically have *endings*, but
     # it'll be a symbolic gambling addiction neverending situation at the *endings* of the game if you
     # don't walk away once you make enough to get home (50 gold minimum)
@@ -77,6 +77,7 @@ default maxTime = 72
 
 # The game starts here.
 label start:
+    play music "audio/bgm.mp3" volume 0.25
     # Write the character you defined in characters.rpy, and "what the character says" in speech marks
     bw "You've woke up after a"
     bw "...heavy..."
@@ -186,6 +187,7 @@ label start:
 
     jump plan
 label plan:
+    play music "audio/planbgm.mp3" volume 0.25
 # plan consists of:
 # - killing creatures in the area, but they're already claimed by these cool adventurers
 # in a cool party, fuck, why do you never get to be in a cool party?
@@ -211,10 +213,11 @@ label plan:
             dm "(They've already been killed and the rewards claimed by some cool adventurers
              in a cool party)"
             bw "why aren't you in a cool party?"
-            bw "Oh damn, they're so cool! They somehow killed every Spidpigeon, slime, and blood foxes in existance!"
+            bw "Oh damn, they're so cool! They somehow killed every Spidpigeon, slime, and blood fox in existance!"
             dm "(This depresses you immensely, and you decide on going to the
             casino to destress and maybe win enough to get home)"
-            dm "(As what is more relaxing than over stimulation of flashing lights and noises?)"
+            dm "(As what is more relaxing than the over stimulation of flashing lights and noises?)"
+            play music "audio/casinobgm.mp3" volume 0.25
 
         "A Lemonade Stand":
             scene outside
@@ -232,6 +235,7 @@ label plan:
             dm "(You break your lemonade stand in the process and can no longer continue selling lemonade.)"
             $ timeLeft -= 5
             dm "(After 5 hours of raging, you decide to take your earnings to the casino to destress and get the rest of the money needed to get home)"
+            play music "audio/casinobgm.mp3" volume 0.25
 
         "Casino":
             scene outside
@@ -241,28 +245,31 @@ label plan:
             you "Shut up brain worm, you just want me to miss my little Timmy's lute recital!"
             bw "Why would I want that? I told you about the recital in the first place!"
             dm "(You ignore the brain worm and head to the casino)"
+            play music "audio/casinobgm.mp3" volume 0.25
 
     jump dice_rolling
 
 label dice_rolling:
     # WIP Casino background
     scene casino
+#    play music "audio/casinobgm.mp3" volume 0.25
     # Dice roll - Random number generator between 1 and 20, to signify a D20 dice.
     # Using random function to do a very simple 1 - 20 dice roll
     $ import random
     # You want a random interger between 1 and 20
     $ roll = random.randint(1, 20)
-
     "(You go to the snail races at some part of this endevor for coin so you can get home)"
     "(You pay 10 gold to play)"
     $ coinsLeft -= 10
     "Roll for luck!"
+    # Plays the sound dice from audio folder
+    play sound "audio/dice.mp3"
     "You rolled [roll] on a d20!"
     if roll == 20:
         scene casinorace5
-        dm "(The second the gun goes off the snail is already at the finish line)"
+        dm "(The second the gun goes off your snail is already at the finish line)"
         dm "(Nobody knows what happened. It was just there! Done! First place!)"
-        dm "(Pete from the SnailWorld Records was also present and watching the match)"
+        dm "(Pete from the Guinea Pig Book of Snail World Records was also present and watching the match)"
         pete "New world record!"
         dm "(The snail is proud of itself)"
         you "What was the time?"
@@ -305,6 +312,7 @@ label dice_rolling:
         scene casinorace1
         dm "(Your snail has just enough strength not to complete fumble the entire race)"
         dm "(Unfortunately though, it is not strong enough to win...)"
+        scene casinorace4
         dm "(You got into 3rd place)"
         dm "(Winning no gold, but you were given a 'One Free Try' token as a runner up prize)"
         dm "(It literally adds 10 gold to your bag again)"
@@ -323,6 +331,7 @@ label dice_rolling:
         dm "(The poor thing winces and cries out in pain)"
         dm "(As the priority for the medical world's knowledge of snail
         treatment isn't anywhere near the top of the list)"
+        play sound "audio/shotgun.mp3"
         dm "(A casino bouncer takes the snail out back and shoots it with a shotgun to put it out of it's misery)"
         scene casinorace7
         dm "(The other snails glare at you like they know this is your fault for a bad roll)"
@@ -341,23 +350,36 @@ label dice_rolling:
         dm "(If this snail had hands, it'd be throwing them.)"
         scene casinorace1
         dm "(To spite you, when the gun goes off to start the race,)"
+        scene casinorace8
         dm "(It slithers backwards as fast as it can until it falls off the table)"
+        scene casinorace9
         dm "(Coming not only in last place, but technically not even starting the race in the first palce)"
+        scene casinorace10
         dm "(Disqualifying you and everyone else that bet on it.)"
+        scene casinorace11
         dm "(Everyone else who bet on Ol' Slimey glare at you)"
+        scene casinorace12
         dm "(You should probably watch your back when you leave later)"
         dm "(You will have to pick another snail for the next race)"
         dm "(And pay an extra 10 gold penalty from the racing fee, to stop a riot breaking out)"
         dm "(Losing you 20 gold.)"
         $ coinsLeft -= 20
 
+
+################################################################################
+########################## ALL GAME ENDINGS ####################################
+## AND THE QUESTION TO PLAYER IF THEY WANT TO PLAY ANOTHER RACE/GAMBLE AGAIN ##
+################################################################################
+
 # If run out of money you get auto game over, if max out coins auto game win end
 # No coin ending (nocoinleft)
 if coinsLeft <= 0:
     jump nocoinleft
 # Maxxed out coin ending (allthecoin)
-elif coinsLeft >= 100:
+elif coinsLeft >= 100 and timeLeft >=12:
     jump allthecoin
+elif  timeLeft <=11:
+    jump notimeleft
 
 # This is asking player/you if you want to continue snail racing, even if you have enough coins to end it.
 # The limitation of "There is no end." is working here as a psychological thing, as you've won the game and
@@ -375,46 +397,127 @@ menu:
     "No, I think I have enough to go home and don't want to risk losing it all":
         jump endings
 
-# Game endings
+# If you have not got enough coin and time you lose
 label endings:
-    if coinsLeft >= 50:
-        jump win
-    elif coinsLeft <=40:
+    if coinsLeft <=40 and timeLeft <=11:
         jump lose
+    elif timeLeft <=11:
+        jump lose
+    elif coinsLeft <=49:
+        jump lose
+    elif coinsLeft >=50 and timeLeft >=12:
+        jump winner
+    elif coinsLeft >=50:
+        jump winner
+    elif timeLeft >=12:
+        jump winner
 
-label win:
-    "winner"
+# GOOD ENDING - ENOUGH MONEY AND TIME FOR THE RECITAL, YOU FINALLY STOPPED GAMBLING WILLINGLY!
+label winner:
+    scene casino
+    dm "(Ok let's do another rac.... WAIT?!?)"
+    dm "(Did you just say you WANT to STOP gambling???)"
+    dm "(Willingly stopping gambling of your own accord?!??)"
+    "(The DM starts to tear up)"
+    dm "(You have enough money and time to make it back to Little Timmy's lute recital.)"
+    scene luterecital
+    play music "audio/lute.mp3" volume 0.25
+    dm "(As Little Timmy is starting, he looks into the crowd of parents and to your empty seat... but then!)"
+    dm "(He sees you waving with a box of popcorn and going to your chair to sit down.)"
+    dm "(The smile on his face is so bright it could melt a thousand suns!)"
+    dm "(He takes a deep breath...)"
+    dm "(And what sounds like the songs of angels plays forth)"
+    dm "(You're so proud of Little Timmy, and your partner is proud of you for getting here on time)"
+    dm "(You stop drinking cold turkey, and give up gambling at the snail races.)"
+    scene home
+    dm "(And the three of you live happily ever after...)"
+    dm "(No longer a broken home.)"
+    dm "(PS: the brain worm dies of boredom. He didn't eat all of your brain, might have eaten the bit that deals with addiction actually
+    so I guess he was useful for something!)"
+    "(The End)"
+    "(Ending 1 of 5: Winner! You stopped gambling willingly!)"
     "(For legal reasons this game is a joke, please don't gamble on snail races,
     or on any races, but if you REALLY have to at least gamble responsibily)"
     return
 
+# BAD ENDING - NO TIME OR COIN LEFT TO MAKE IT TO LITTLE TIMMY'S LUTE RECITAL
 label lose:
-    "lose"
+    scene start
+    dm "(You've lost.)"
+    dm "(There isn't enough time or coin to make it back to Little Timmy's lute recital on time...)"
+    dm "(You're a terrible parent and partner who only cares about gambling, drinking....)"
+    dm "(And apparently... snails?)"
+    dm "(This cycle of disappointing your child and partner will continue forever...)"
+    dm "(I can only hope they leave you at some point, you don't deserve them.)"
+    dm "(PS: The brain worm doesn't leave you, he annoys your ever waking moment with stupid trivia and nonsensical things)"
+    dm "(And he also slowly eats away at your brain, which takes years, until none is left.)"
+    "(The End)"
+    "(Ending 2 of 5: You've Lost.)"
     "(For legal reasons this game is a joke, please don't gamble on snail races,
     or on any races, but if you REALLY have to at least gamble responsibily)"
     return
 
+# BAD ENDING - NO MONEY LEFT TO GAMBLE AND THUS NO WAY TO MAKE IT HOME IN TIME FOR LITTLE TIMMY'S RECITAL
 label nocoinleft:
+    scene start
     dm "(You have ran out of coin at the snail races...)"
-    dm "(And so, you missed little timmy's lute recital)"
-    dm "(The divorce mages take your fields)"
-
+    dm "(And so, you ONCE AGAIN missed an event your son was trying to impress you with)"
+    scene luterecital
+    play music "audio/lute.mp3" volume 0.25
+    dm "(Little Timmy's lute recital would have brought tears to your eyes! It was the sounds of angels...)"
+    dm "(You don't care though, you're just looking for your next coin to go back to the snail races...)"
+    scene start
+    stop music
+    dm "(This was the last straw for your partner, who thankfully called the divorce mages...)"
+    dm "(The divorce mages did indeed take your fields)"
+    dm "(You're broke, divorced, and homeless.)"
+    dm "(PS: The brain worm doesn't leave you either, he annoys your ever waking moment with stupid trivia and nonsensical things)"
+    dm "(Whiles also slowly eating away at your brain, which takes years, until none is left.)"
+    "(The End)"
+    "(Ending 3 of 5: No Coin Left.)"
     "(For legal reasons this game is a joke, please don't gamble on snail races,
     or on any races, but if you REALLY have to at least gamble responsibily)"
     return
 
+# GOOD ENDING - YOU'RE RICH AF AND MADE IT BACK TO THE RECITAL ON TIME
 label allthecoin:
-    dm "(You don't need to gamble anymore)"
+    scene home
+    dm "(You don't need to gamble anymore!)"
     dm "(You've maxed out the coins!)"
-    dm "(Not only do you get the boat back to little Timmy's recital on time,)"
-    dm "(you also buy your partner a beautiful gold encrusted snail ornament fron the casino gift shop)"
-    dm "(For some reason, they LOVE it! And show all of their confused friends)"
+    dm "(You could have gambled for longer but the one thing casinos hate is when someone is WINNING all of their coin...)"
+    dm "(So you've kind of been barred from going to that casino ever again...)"
+    scene luterecital
+    play music "audio/lute.mp3" volume 0.25
+    dm "(This is good news though! Not only do you get the boat back to little Timmy's recital on time,)"
+    dm "(you also buy your partner a beautiful gold encrusted snail ornament from the casino gift shop)"
+    dm "(For some reason, they LOVE it! And show all of their confused friends!)"
     dm "(Little Timmy loves you too. And plays the lute like a pro.)"
     lt "When I grow up, I'm going to be a gambler just like you!"
     dm "(You've never been so proud.)"
+    scene home
+    dm "(PS: the brain worm didn't eat all of your brain, you had too many weird facts about frogs in there and he
+    was creeped out and left out from one of your ears one night, never to be seen again.)"
+    "(The End)"
+    "(Ending 4 of 5: You got ALL THE COIN!)"
     "(For legal reasons this game is a joke, please don't gamble on snail races,
     or on any races, but if you REALLY have to at least gamble responsibily)"
     return
 
+# BAD ENDING - NO TIME LEFT TO GET TO LITTLE TIMMY'S LUTE RECITAL
+label notimeleft:
+    scene start
+    dm "(There's less than 12 hours left and you haven't started to make your way home for little Timmy's lute recital...)"
+    dm "(You're a terrible parent and partner who only cares about gambling, drinking....)"
+    dm "(And apparently snails...)"
+    dm "(This cycle of disappointing your child and partner will continue forever...)"
+    dm "(I can only hope they leave you at some point, you don't deserve them.)"
+    dm "(PS: The brain worm doesn't leave you, he annoys your ever waking moment with stupid trivia and nonsensical things)"
+    dm "(And he also slowly eats away at your brain, which takes years, until none is left.)"
+    "(The End)"
+    "(Ending 5 of 5: No Time Left.)"
+    "(For legal reasons this game is a joke, please don't gamble on snail races,
+    or on any races, but if you REALLY have to at least gamble responsibily)"
+
+    return
 # This ends the game.
     return

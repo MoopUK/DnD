@@ -28,8 +28,38 @@
 # start
 # https://www.pexels.com/photo/dawn-landscape-village-brook-3750664/
 
+# luteRecital - Didn't really have time to get a specific photo and this looks cool and at least has a lute lol
+# https://www.pexels.com/photo/bard-in-face-mask-playing-lute-in-empty-castle-halls-14601757/
+
+# home
+# https://www.pexels.com/photo/bard-in-face-mask-playing-lute-in-empty-castle-halls-14601757/
+
 #------------------------------
 # SOUND SOUND SOUND
 #------------------------------
 # - Snail Cramp .mp3
 # Sound by Kouda_ha
+
+# Shotgun
+# gunfire identify weapon ak47 shotgun_pistol_long gun 3 by jjcunning
+# -- https://freesound.org/s/578192/ -- License: Creative Commons 0
+
+# Dice
+# gunfire identify weapon ak47 shotgun_pistol_long gun 3 by jjcunning
+# -- https://freesound.org/s/578192/ -- License: Creative Commons 0
+
+# Lute
+# Medieval Lute Chords by f-r-a-g-i-l-e
+# -- https://freesound.org/s/506266/ -- License: Creative Commons 0
+
+# BGM
+# Some Background I made for my game Ambient Music by DRFX -- https://freesound.org/s/341807/
+# -- License: Creative Commons 0
+
+# plan BGM
+# Chasing the wind - background music loop by Twotrickpony
+# -- https://freesound.org/s/747915/ -- License: Attribution 4.0
+
+# Casino BGM
+# Bgm Blues Guitar Loop by Ncone -- https://freesound.org/s/721148/
+# -- License: Creative Commons 0
