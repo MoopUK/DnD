@@ -77,6 +77,7 @@ default maxTime = 72
 
 # The game starts here.
 label start:
+    play music "audio/bgm.mp3" volume 0.25
     # Write the character you defined in characters.rpy, and "what the character says" in speech marks
     bw "You've woke up after a"
     bw "...heavy..."
@@ -186,6 +187,7 @@ label start:
 
     jump plan
 label plan:
+    play music "audio/planbgm.mp3" volume 0.25
 # plan consists of:
 # - killing creatures in the area, but they're already claimed by these cool adventurers
 # in a cool party, fuck, why do you never get to be in a cool party?
@@ -215,6 +217,7 @@ label plan:
             dm "(This depresses you immensely, and you decide on going to the
             casino to destress and maybe win enough to get home)"
             dm "(As what is more relaxing than the over stimulation of flashing lights and noises?)"
+            play music "audio/casinobgm.mp3" volume 0.25
 
         "A Lemonade Stand":
             scene outside
@@ -232,6 +235,7 @@ label plan:
             dm "(You break your lemonade stand in the process and can no longer continue selling lemonade.)"
             $ timeLeft -= 5
             dm "(After 5 hours of raging, you decide to take your earnings to the casino to destress and get the rest of the money needed to get home)"
+            play music "audio/casinobgm.mp3" volume 0.25
 
         "Casino":
             scene outside
@@ -241,12 +245,14 @@ label plan:
             you "Shut up brain worm, you just want me to miss my little Timmy's lute recital!"
             bw "Why would I want that? I told you about the recital in the first place!"
             dm "(You ignore the brain worm and head to the casino)"
+            play music "audio/casinobgm.mp3" volume 0.25
 
     jump dice_rolling
 
 label dice_rolling:
     # WIP Casino background
     scene casino
+#    play music "audio/casinobgm.mp3" volume 0.25
     # Dice roll - Random number generator between 1 and 20, to signify a D20 dice.
     # Using random function to do a very simple 1 - 20 dice roll
     $ import random
@@ -415,7 +421,7 @@ label winner:
     "(The DM starts to tear up)"
     dm "(You have enough money and time to make it back to Little Timmy's lute recital.)"
     scene luterecital
-    play music "audio/lute.mp3"
+    play music "audio/lute.mp3" volume 0.25
     dm "(As Little Timmy is starting, he looks into the crowd of parents and to your empty seat... but then!)"
     dm "(He sees you waving with a box of popcorn and going to your chair to sit down.)"
     dm "(The smile on his face is so bright it could melt a thousand suns!)"
@@ -457,7 +463,7 @@ label nocoinleft:
     dm "(You have ran out of coin at the snail races...)"
     dm "(And so, you ONCE AGAIN missed an event your son was trying to impress you with)"
     scene luterecital
-    play music "audio/lute.mp3"
+    play music "audio/lute.mp3" volume 0.25
     dm "(Little Timmy's lute recital would have brought tears to your eyes! It was the sounds of angels...)"
     dm "(You don't care though, you're just looking for your next coin to go back to the snail races...)"
     scene start
@@ -481,7 +487,7 @@ label allthecoin:
     dm "(You could have gambled for longer but the one thing casinos hate is when someone is WINNING all of their coin...)"
     dm "(So you've kind of been barred from going to that casino ever again...)"
     scene luterecital
-    play music "audio/lute.mp3"
+    play music "audio/lute.mp3" volume 0.25
     dm "(This is good news though! Not only do you get the boat back to little Timmy's recital on time,)"
     dm "(you also buy your partner a beautiful gold encrusted snail ornament from the casino gift shop)"
     dm "(For some reason, they LOVE it! And show all of their confused friends!)"

@@ -51,3 +51,15 @@
 # Lute
 # Medieval Lute Chords by f-r-a-g-i-l-e
 # -- https://freesound.org/s/506266/ -- License: Creative Commons 0
+
+# BGM
+# Some Background I made for my game Ambient Music by DRFX -- https://freesound.org/s/341807/
+# -- License: Creative Commons 0
+
+# plan BGM
+# Chasing the wind - background music loop by Twotrickpony
+# -- https://freesound.org/s/747915/ -- License: Attribution 4.0
+
+# Casino BGM
+# Bgm Blues Guitar Loop by Ncone -- https://freesound.org/s/721148/
+# -- License: Creative Commons 0
