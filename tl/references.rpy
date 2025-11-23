@@ -39,3 +39,15 @@
 #------------------------------
 # - Snail Cramp .mp3
 # Sound by Kouda_ha
+
+# Shotgun
+# gunfire identify weapon ak47 shotgun_pistol_long gun 3 by jjcunning
+# -- https://freesound.org/s/578192/ -- License: Creative Commons 0
+
+# Dice
+# gunfire identify weapon ak47 shotgun_pistol_long gun 3 by jjcunning
+# -- https://freesound.org/s/578192/ -- License: Creative Commons 0
+
+# Lute
+# Medieval Lute Chords by f-r-a-g-i-l-e
+# -- https://freesound.org/s/506266/ -- License: Creative Commons 0

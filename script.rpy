@@ -27,7 +27,7 @@
     # (Maybe the Casino will kick you out when you earn your maximum? And you go home as nothing else to do)
 
 # Game Jam Limitation 'There is no end':
-    # - There is no end - If you sucumb to the gambling addiction you could gamble to no end.
+    # - There is no end - If you succumb to the gambling addiction you could gamble to no end.
     # Rather than a game that is ongoing forever, this will technically have *endings*, but
     # it'll be a symbolic gambling addiction neverending situation at the *endings* of the game if you
     # don't walk away once you make enough to get home (50 gold minimum)
@@ -259,6 +259,8 @@ label dice_rolling:
     "(You pay 10 gold to play)"
     $ coinsLeft -= 10
     "Roll for luck!"
+    # Plays the sound dice from audio folder
+    play sound "audio/dice.mp3"
     "You rolled [roll] on a d20!"
     if roll == 20:
         scene casinorace5
@@ -326,6 +328,7 @@ label dice_rolling:
         dm "(The poor thing winces and cries out in pain)"
         dm "(As the priority for the medical world's knowledge of snail
         treatment isn't anywhere near the top of the list)"
+        play sound "audio/shotgun.mp3"
         dm "(A casino bouncer takes the snail out back and shoots it with a shotgun to put it out of it's misery)"
         scene casinorace7
         dm "(The other snails glare at you like they know this is your fault for a bad roll)"
@@ -402,6 +405,7 @@ label winner:
     "(The DM starts to tear up)"
     dm "(You have enough money and time to make it back to Little Timmy's lute recital.)"
     scene luterecital
+    play music "audio/lute.mp3"
     dm "(As Little Timmy is starting, he looks into the crowd of parents and to your empty seat... but then!)"
     dm "(He sees you waving with a box of popcorn and going to your chair to sit down.)"
     dm "(The smile on his face is so bright it could melt a thousand suns!)"
@@ -443,8 +447,11 @@ label nocoinleft:
     dm "(You have ran out of coin at the snail races...)"
     dm "(And so, you ONCE AGAIN missed an event your son was trying to impress you with)"
     scene luterecital
+    play music "audio/lute.mp3"
     dm "(Little Timmy's lute recital would have brought tears to your eyes! It was the sounds of angels...)"
     dm "(You don't care though, you're just looking for your next coin to go back to the snail races...)"
+    scene start
+    stop music
     dm "(This was the last straw for your partner, who thankfully called the divorce mages...)"
     dm "(The divorce mages did indeed take your fields)"
     dm "(You're broke, divorced, and homeless.)"
@@ -464,6 +471,7 @@ label allthecoin:
     dm "(You could have gambled for longer but the one thing casinos hate is when someone is WINNING all of their coin...)"
     dm "(So you've kind of been barred from going to that casino ever again...)"
     scene luterecital
+    play music "audio/lute.mp3"
     dm "(This is good news though! Not only do you get the boat back to little Timmy's recital on time,)"
     dm "(you also buy your partner a beautiful gold encrusted snail ornament from the casino gift shop)"
     dm "(For some reason, they LOVE it! And show all of their confused friends!)"
