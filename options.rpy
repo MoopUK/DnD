@@ -29,7 +29,12 @@ define config.version = "1.0"
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _p("""
+define gui.about = _p("""This game was made by Kouda_Ha for the Mini Jam 198 Speed, limitation 'There is no end.'
+
+The jam limitation isn't literal, but psychological, can you stop gambling and be a good parent / partner? Or are
+you going to fall into the endless cycle of gambling addiction and miss your sons lute recital?
+
+All references to all assets used (including owned by Kouda_Ha) are inside of references.rpy
 """)
 
 
