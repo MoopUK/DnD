@@ -252,9 +252,6 @@ label dice_rolling:
     $ import random
     # You want a random interger between 1 and 20
     $ roll = random.randint(1, 20)
-###########################################
-    $ timeLeft = 11
-###########################################
     "(You go to the snail races at some part of this endevor for coin so you can get home)"
     "(You pay 10 gold to play)"
     $ coinsLeft -= 10
@@ -347,10 +344,15 @@ label dice_rolling:
         dm "(If this snail had hands, it'd be throwing them.)"
         scene casinorace1
         dm "(To spite you, when the gun goes off to start the race,)"
+        scene casinorace8
         dm "(It slithers backwards as fast as it can until it falls off the table)"
+        scene casinorace9
         dm "(Coming not only in last place, but technically not even starting the race in the first palce)"
+        scene casinorace10
         dm "(Disqualifying you and everyone else that bet on it.)"
+        scene casinorace11
         dm "(Everyone else who bet on Ol' Slimey glare at you)"
+        scene casinorace12
         dm "(You should probably watch your back when you leave later)"
         dm "(You will have to pick another snail for the next race)"
         dm "(And pay an extra 10 gold penalty from the racing fee, to stop a riot breaking out)"
@@ -393,7 +395,15 @@ menu:
 label endings:
     if coinsLeft <=40 and timeLeft <=11:
         jump lose
-    elif coinsLeft >=50 and timeleft >=12:
+    elif timeLeft <=11:
+        jump lose
+    elif coinsLeft <=49:
+        jump lose
+    elif coinsLeft >=50 and timeLeft >=12:
+        jump winner
+    elif coinsLeft >=50:
+        jump winner
+    elif timeLeft >=12:
         jump winner
 
 # GOOD ENDING - ENOUGH MONEY AND TIME FOR THE RECITAL, YOU FINALLY STOPPED GAMBLING WILLINGLY!
