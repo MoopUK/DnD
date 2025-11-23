@@ -119,7 +119,7 @@ label start:
                 dm "(I don't know where you keep it, I'm not a cop.)"
                 dm "(But the coin purse and/or bag of holding is barren of coin)"
                 bw "Yeah... about that..."
-                dm "(You glare at the brain worm)"
+                dm "(You glare as if at the brain worm itself)"
                 bw "I mean, you drank a LOT last night and they sold this fancy bottle..."
                 bw "Came out on a little boat with some bar people cheering..."
                 bw "You err... liked it so much you paid for that experience at least 12 times"
@@ -128,13 +128,13 @@ label start:
                 # scene sets the background image, in this case to a map (once I make and put in a map)
                 scene mapstart
                 dm "(It is quite a distance...)"
-                bw "Ooooh! A penny!"
+                bw "Ooooh! Is that a penny?"
                 dm "(You find 20 gold on the floor, score!)"
                 # Adds X-amount of money to coin purse
                 $ coinsLeft += 20
                 dm "(You'll need 50 gold to get home.)"
                 # [coinsleft] displays the number of current coinsleft
-                dm "(you have [coinsLeft] gold)"
+                dm "(you currently have [coinsLeft] gold)"
 
         "Ask a passerby where I am":
                 dm "(You ask a passerby where you are)"
@@ -143,7 +143,7 @@ label start:
             # Shows the coin purse top right of the game screen
                 show screen coinsLeft
                 bw "Yeah... about that..."
-                dm "(You glare at the brain worm)"
+                dm "(You glare as if at the brain worm itself)"
                 bw "I mean, you drank a LOT last night and they sold this fancy bottle..."
                 bw "Came out on a little boat with some bar people cheering..."
                 bw "You err... liked it so much you paid for that experience at least 12 times"
@@ -160,7 +160,7 @@ label start:
                 scene mapstart
                 dm "(You'll need 50 gold to get home.)"
                 # [coinsleft] displays the number of current coinsleft
-                dm "(you have [coinsLeft] gold)"
+                dm "(you currently have [coinsLeft] gold)"
 
         "Check my bag of holding to see if there's ANYTHING to get rid of my hangover":
                 dm "(There is not.)"
@@ -168,7 +168,7 @@ label start:
                 show screen coinsLeft
                 dm "(You also notice a lack of coin in your posession)"
                 bw "Yeah... about that..."
-                dm "(You glare at the brain worm)"
+                dm "(You glare as if at the brain worm itself)"
                 bw "I mean, you drank a LOT last night and they sold this fancy bottle..."
                 bw "Came out on a little boat with some bar people cheering..."
                 bw "You err... liked it so much you paid for that experience at least 12 times"
@@ -176,13 +176,13 @@ label start:
                 dm "(You see the boat transport dock down the street and check your map to find out where you are)"
                 scene mapstart
                 dm "(That is QUITE the distance from home...)"
-                bw "Oooh! A penny!"
+                bw "Oooh! Is that a penny?"
                 dm "(You found 20 gold on the floor, score!)"
                 # Adds X-amount of money to coin purse
                 $ coinsLeft += 20
                 dm "(You'll need 50 gold to get home.)"
                 # [coinsleft] displays the number of current coinsleft
-                dm "(you have [coinsLeft] gold)"
+                dm "(you currently have [coinsLeft] gold)"
 
     jump plan
 label plan:
@@ -204,19 +204,20 @@ label plan:
         "Reward posters for monsters in the area":
             scene wanted
             dm "(You go to the wanted posters in the nearby tavern)"
-            dm "(You shiver at the thought of a spider pidgeon hybrid)"
-            dm "(But it pays 100g each!)"
-            dm "(You hear cheers and screams of delight outside and take a look...)"
+            dm "(You shiver at the thought of a spider-pidgeon hybrid)"
+            dm "(But it does pay 100g each!)"
+            dm "(You suddenly hear cheers and screams of delight outside and decide to take a look...)"
             scene outside
             dm "(They've already been killed and the rewards claimed by some cool adventurers
              in a cool party)"
-            bw "why do you never get to be in a cool party?"
-            dm "(They're so cool they somehow killed every Spidpigeon, slime, and blood foxes in existance!)"
+            bw "why aren't you in a cool party?"
+            bw "Oh damn, they're so cool! They somehow killed every Spidpigeon, slime, and blood foxes in existance!"
             dm "(This depresses you immensely, and you decide on going to the
             casino to destress and maybe win enough to get home)"
-            dm "(What is more relaxing than over stimulation of flashing lights and noises?)"
+            dm "(As what is more relaxing than over stimulation of flashing lights and noises?)"
 
         "A Lemonade Stand":
+            scene outside
             dm "(You find some bark on the side of the road and make up a sign for a lemonade stand)"
             dm "(Finding a lemon tree and conveniently a pitcher right next to it, you make lemonade and try to sell it make
             up the money needed to get home)"
