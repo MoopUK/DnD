@@ -28,6 +28,12 @@
 # start
 # https://www.pexels.com/photo/dawn-landscape-village-brook-3750664/
 
+# luteRecital - Didn't really have time to get a specific photo and this looks cool and at least has a lute lol
+# https://www.pexels.com/photo/bard-in-face-mask-playing-lute-in-empty-castle-halls-14601757/
+
+# home
+# https://www.pexels.com/photo/bard-in-face-mask-playing-lute-in-empty-castle-halls-14601757/
+
 #------------------------------
 # SOUND SOUND SOUND
 #------------------------------

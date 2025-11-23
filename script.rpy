@@ -395,11 +395,13 @@ label endings:
 
 # GOOD ENDING - ENOUGH MONEY AND TIME FOR THE RECITAL, YOU FINALLY STOPPED GAMBLING WILLINGLY!
 label winner:
+    scene casino
     dm "(Ok let's do another rac.... WAIT?!?)"
     dm "(Did you just say you WANT to STOP gambling???)"
     dm "(Willingly stopping gambling of your own accord?!??)"
     "(The DM starts to tear up)"
     dm "(You have enough money and time to make it back to Little Timmy's lute recital.)"
+    scene luterecital
     dm "(As Little Timmy is starting, he looks into the crowd of parents and to your empty seat... but then!)"
     dm "(He sees you waving with a box of popcorn and going to your chair to sit down.)"
     dm "(The smile on his face is so bright it could melt a thousand suns!)"
@@ -407,6 +409,7 @@ label winner:
     dm "(And what sounds like the songs of angels plays forth)"
     dm "(You're so proud of Little Timmy, and your partner is proud of you for getting here on time)"
     dm "(You stop drinking cold turkey, and give up gambling at the snail races.)"
+    scene home
     dm "(And the three of you live happily ever after...)"
     dm "(No longer a broken home.)"
     dm "(PS: the brain worm dies of boredom. He didn't eat all of your brain, might have eaten the bit that deals with addiction actually
@@ -419,6 +422,7 @@ label winner:
 
 # BAD ENDING - NO TIME OR COIN LEFT TO MAKE IT TO LITTLE TIMMY'S LUTE RECITAL
 label lose:
+    scene start
     dm "(You've lost.)"
     dm "(There isn't enough time or coin to make it back to Little Timmy's lute recital on time...)"
     dm "(You're a terrible parent and partner who only cares about gambling, drinking....)"
@@ -435,8 +439,10 @@ label lose:
 
 # BAD ENDING - NO MONEY LEFT TO GAMBLE AND THUS NO WAY TO MAKE IT HOME IN TIME FOR LITTLE TIMMY'S RECITAL
 label nocoinleft:
+    scene start
     dm "(You have ran out of coin at the snail races...)"
     dm "(And so, you ONCE AGAIN missed an event your son was trying to impress you with)"
+    scene luterecital
     dm "(Little Timmy's lute recital would have brought tears to your eyes! It was the sounds of angels...)"
     dm "(You don't care though, you're just looking for your next coin to go back to the snail races...)"
     dm "(This was the last straw for your partner, who thankfully called the divorce mages...)"
@@ -452,16 +458,19 @@ label nocoinleft:
 
 # GOOD ENDING - YOU'RE RICH AF AND MADE IT BACK TO THE RECITAL ON TIME
 label allthecoin:
+    scene home
     dm "(You don't need to gamble anymore!)"
     dm "(You've maxed out the coins!)"
     dm "(You could have gambled for longer but the one thing casinos hate is when someone is WINNING all of their coin...)"
     dm "(So you've kind of been barred from going to that casino ever again...)"
+    scene luterecital
     dm "(This is good news though! Not only do you get the boat back to little Timmy's recital on time,)"
     dm "(you also buy your partner a beautiful gold encrusted snail ornament from the casino gift shop)"
     dm "(For some reason, they LOVE it! And show all of their confused friends!)"
     dm "(Little Timmy loves you too. And plays the lute like a pro.)"
     lt "When I grow up, I'm going to be a gambler just like you!"
     dm "(You've never been so proud.)"
+    scene home
     dm "(PS: the brain worm didn't eat all of your brain, you had too many weird facts about frogs in there and he
     was creeped out and left out from one of your ears one night, never to be seen again.)"
     "(The End)"
@@ -472,6 +481,7 @@ label allthecoin:
 
 # BAD ENDING - NO TIME LEFT TO GET TO LITTLE TIMMY'S LUTE RECITAL
 label notimeleft:
+    scene start
     dm "(There's less than 12 hours left and you haven't started to make your way home for little Timmy's lute recital...)"
     dm "(You're a terrible parent and partner who only cares about gambling, drinking....)"
     dm "(And apparently snails...)"
