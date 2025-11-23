@@ -211,10 +211,10 @@ label plan:
             dm "(They've already been killed and the rewards claimed by some cool adventurers
              in a cool party)"
             bw "why aren't you in a cool party?"
-            bw "Oh damn, they're so cool! They somehow killed every Spidpigeon, slime, and blood foxes in existance!"
+            bw "Oh damn, they're so cool! They somehow killed every Spidpigeon, slime, and blood fox in existance!"
             dm "(This depresses you immensely, and you decide on going to the
             casino to destress and maybe win enough to get home)"
-            dm "(As what is more relaxing than over stimulation of flashing lights and noises?)"
+            dm "(As what is more relaxing than the over stimulation of flashing lights and noises?)"
 
         "A Lemonade Stand":
             scene outside
@@ -252,7 +252,9 @@ label dice_rolling:
     $ import random
     # You want a random interger between 1 and 20
     $ roll = random.randint(1, 20)
-
+###########################################
+    $ timeLeft = 11
+###########################################
     "(You go to the snail races at some part of this endevor for coin so you can get home)"
     "(You pay 10 gold to play)"
     $ coinsLeft -= 10
@@ -260,9 +262,9 @@ label dice_rolling:
     "You rolled [roll] on a d20!"
     if roll == 20:
         scene casinorace5
-        dm "(The second the gun goes off the snail is already at the finish line)"
+        dm "(The second the gun goes off your snail is already at the finish line)"
         dm "(Nobody knows what happened. It was just there! Done! First place!)"
-        dm "(Pete from the SnailWorld Records was also present and watching the match)"
+        dm "(Pete from the Guinea Pig Book of Snail World Records was also present and watching the match)"
         pete "New world record!"
         dm "(The snail is proud of itself)"
         you "What was the time?"
@@ -305,6 +307,7 @@ label dice_rolling:
         scene casinorace1
         dm "(Your snail has just enough strength not to complete fumble the entire race)"
         dm "(Unfortunately though, it is not strong enough to win...)"
+        scene casinorace4
         dm "(You got into 3rd place)"
         dm "(Winning no gold, but you were given a 'One Free Try' token as a runner up prize)"
         dm "(It literally adds 10 gold to your bag again)"
@@ -356,8 +359,10 @@ label dice_rolling:
 if coinsLeft <= 0:
     jump nocoinleft
 # Maxxed out coin ending (allthecoin)
-elif coinsLeft >= 100:
+elif coinsLeft >= 100 and timeLeft >=12:
     jump allthecoin
+elif  timeLeft <=11:
+    jump notimeleft
 
 # This is asking player/you if you want to continue snail racing, even if you have enough coins to end it.
 # The limitation of "There is no end." is working here as a psychological thing, as you've won the game and
@@ -375,30 +380,37 @@ menu:
     "No, I think I have enough to go home and don't want to risk losing it all":
         jump endings
 
-# Game endings
+
+################################################################################
+########################## ALL GAME ENDINGS ####################################
+################################################################################
 label endings:
-    if coinsLeft >= 50:
-        jump win
-    elif coinsLeft <=40:
+    if coinsLeft <=40 or timeLeft <=11:
         jump lose
 
-label win:
-    "winner"
-    "(For legal reasons this game is a joke, please don't gamble on snail races,
-    or on any races, but if you REALLY have to at least gamble responsibily)"
-    return
-
 label lose:
-    "lose"
+    dm "(You've lost.)"
+    dm "(There isn't enough time or coin to make it back to Little Timmy's lute recital on time...)"
+    dm "(You're a terrible parent and partner who only cares about gambling, drinking....)"
+    dm "(And apparently... snails?)"
+    dm "(This cycle of disappointing your child and partner will continue forever...)"
+    dm "(I can only hope they leave you at some point, you don't deserve them.)"
+    "(The End)"
+    "(Ending 1 of 4: You've Lost.)"
     "(For legal reasons this game is a joke, please don't gamble on snail races,
     or on any races, but if you REALLY have to at least gamble responsibily)"
     return
 
 label nocoinleft:
     dm "(You have ran out of coin at the snail races...)"
-    dm "(And so, you missed little timmy's lute recital)"
+    dm "(And so, you ONCE AGAIN missed an event your son was trying to impress you with)"
+    dm "(Little Timmy's lute recital would have brought tears to your eyes! It was the sounds of angels...)"
+    dm "(You don't care though, you're just looking for your next coin to go back to the snail races...)"
+    dm "(This was the last straw for your partner, who thankfully called the divorce mages...)"
     dm "(The divorce mages take your fields)"
-
+    dm "(Broke, divorced, and homeless.)"
+    "(The End)"
+    "(Ending 2 of 4: No Coin Left.)"
     "(For legal reasons this game is a joke, please don't gamble on snail races,
     or on any races, but if you REALLY have to at least gamble responsibily)"
     return
@@ -412,9 +424,23 @@ label allthecoin:
     dm "(Little Timmy loves you too. And plays the lute like a pro.)"
     lt "When I grow up, I'm going to be a gambler just like you!"
     dm "(You've never been so proud.)"
+    "(The End)"
+    "(Ending 3 of 4: You got ALL THE COIN!)"
     "(For legal reasons this game is a joke, please don't gamble on snail races,
     or on any races, but if you REALLY have to at least gamble responsibily)"
     return
 
+label notimeleft:
+    dm "(There's less than 12 hours left and you haven't started to make your way home for little Timmy's lute recital...)"
+    dm "(You're a terrible parent and partner who only cares about gambling, drinking....)"
+    dm "(And apparently snails...)"
+    dm "(This cycle of disappointing your child and partner will continue forever...)"
+    dm "(I can only hope they leave you at some point, you don't deserve them.)"
+    "(The End)"
+    "(Ending 4 of 4: No Time Left.)"
+    "(For legal reasons this game is a joke, please don't gamble on snail races,
+    or on any races, but if you REALLY have to at least gamble responsibily)"
+
+    return
 # This ends the game.
     return
